@@ -1,3 +1,4 @@
+export {}
 // =================================
 
 
@@ -90,6 +91,3 @@ function map<T, U>(opt: Option<T>, func: (value: T) => U ): Option<U> {
     return { type: 'None' }
   }
 }
-
-
-
