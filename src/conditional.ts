@@ -22,6 +22,9 @@ type T3 = Option<number> extends Some<infer R> ? R : undefined;
 const val3: T3 = undefined;
 // const val4: T3 = 124;
 
+type IsNever<T> = T extends never ? true : false;
+type Tx = IsNever<never>;
+
 
 // mapped typeのunion distribution
 
@@ -44,7 +47,6 @@ const val5: FooBarArr = { bar: [0, 1, 2] }
 type FooBarArr2 = { [P in keyof FooBar]: Array<FooBar> };
 const val7: FooBarArr2 = {};
 
-
 // mapped typeと配列型
 
 type NumArr = number[];
@@ -60,3 +62,11 @@ type Strify<T> = { [P in keyof T]: string }
 type StrArr2 = Strify<NumArr>
 const arr: StrArr2 = ['foo', 'bar'];
 arr.forEach(val => console.log(val));
+
+type PropArrify<T> = { [P in keyof T]: Array<T[P]> };
+type MyTuple = [string, number, boolean];
+
+type T4 = PropArrify<MyTuple>;
+type T5 = keyof MyTuple;
+const t: T4 = [ ['f', 'o', 'o'], [], [true, false]];
+console.log(t.length);
